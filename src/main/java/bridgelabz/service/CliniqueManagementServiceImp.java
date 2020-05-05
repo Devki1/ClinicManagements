@@ -1,7 +1,7 @@
-package com.bridgelabz.service;
+package bridgelabz.service;
 
-import com.bridgelabz.model.Doctor;
-import com.bridgelabz.model.Patient;
+import bridgelabz.model.Doctor;
+import bridgelabz.model.Patient;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,7 +32,5 @@ public class CliniqueManagementServiceImp implements CliniqueInterface {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
 }
