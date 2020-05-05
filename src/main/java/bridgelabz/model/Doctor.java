@@ -1,4 +1,4 @@
-package com.bridgelabz.model;
+package bridgelabz.model;
 
 public class Doctor {
     private String name;
