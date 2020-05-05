@@ -1,7 +1,7 @@
-package com.bridgelabz.service;
+package bridgelabz.service;
 
-import com.bridgelabz.model.Doctor;
-import com.bridgelabz.model.Patient;
+import bridgelabz.model.Doctor;
+import bridgelabz.model.Patient;
 
 public interface CliniqueInterface {
     public void addDoctor(Doctor doctor, String filePath);
