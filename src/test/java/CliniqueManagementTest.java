@@ -30,10 +30,10 @@ public class CliniqueManagementTest {
     public void givenFile_AddDoctorDetails_ShouldReturnTrue() {
         try {
             Doctor doctorDetails1 = new Doctor("Deepak singh", 1011, "Dentist", "9am");
-            Doctor doctorDetails2 = new Doctor("Ak singh", 2021, "Skin", "9am");
-            Doctor doctorDetails3 = new Doctor("DK singh", 3321, "Neurology", "9am");
-            Doctor doctorDetails4 = new Doctor("Sandeep singh", 4008, "Orthopaedics", "9am");
-            Doctor doctorDetails5 = new Doctor("MK sinha", 5004, "Dermatology", "9am");
+            Doctor doctorDetails2 = new Doctor("Ak singh", 2021, "Skin", "10am");
+            Doctor doctorDetails3 = new Doctor("DK singh", 3321, "Neurology", "11am");
+            Doctor doctorDetails4 = new Doctor("Sandeep singh", 4008, "Orthopaedics", "4pm");
+            Doctor doctorDetails5 = new Doctor("MK sinha", 5004, "Dermatology", "8pm");
 
             cliniqueManagementServiceImp.addDoctor(doctorDetails1, doctorFilePath);
             cliniqueManagementServiceImp.addDoctor(doctorDetails2, doctorFilePath);
@@ -100,5 +100,12 @@ public class CliniqueManagementTest {
         boolean isDoctorSpecialist = cliniqueManagementServiceImp.findDoctorSpecialization(doctorSpecialist, doctorFilePath);
         Assert.assertTrue(isDoctorSpecialist);
     }
-}
 
+    @Test
+    public void givenFile_whenSearchDoctorByAvailability_shouldReturnTrue() {
+        String doctorAvailability = "9am";
+        boolean isDoctorAvailability = cliniqueManagementServiceImp
+                .searchDoctorByAvailability(doctorAvailability, doctorFilePath);
+        Assert.assertTrue(isDoctorAvailability);
+    }
+}
