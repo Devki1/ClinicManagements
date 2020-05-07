@@ -13,5 +13,6 @@ public interface CliniqueInterface {
     public boolean searchDoctorById(int doctorId, String doctorfilePath);
 
     boolean findDoctorSpecialization(String doctorSpecialist, String doctorFilePath);
-}
 
+    public boolean searchDoctorByAvailability(String doctorAvailability, String doctorfilePath);
+}
