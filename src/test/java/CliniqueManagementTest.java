@@ -108,4 +108,11 @@ public class CliniqueManagementTest {
                 .searchDoctorByAvailability(doctorAvailability, doctorFilePath);
         Assert.assertTrue(isDoctorAvailability);
     }
+
+    @Test
+    public void givenFile_whenSearchPatientByName_shouldReturnTrue() {
+        String patientName = "Rahul gupta";
+        boolean isPatientName = cliniqueManagementServiceImp.searchPatientByName(patientName, patientFilePath);
+        Assert.assertTrue(isPatientName);
+    }
 }
