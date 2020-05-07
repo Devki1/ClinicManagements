@@ -15,13 +15,13 @@ import java.util.ArrayList;
 public class CliniqueManagementTest {
     public static final String doctorFilePath = "/home/user/IdeaProjects/ClinicManagement/src/main/resources/Doctor.json";
     public static final String patientFilePath = "/home/user/IdeaProjects/ClinicManagement/src/main/resources/Patient.json";
-    CliniqueManagementServiceImp cliniqueManager;
+    CliniqueManagementServiceImp cliniqueManagementServiceImp;
     FileSystem fileSystem;
     ObjectMapper objectMapper;
 
     @Before
     public void setUp() throws Exception {
-        cliniqueManager = new CliniqueManagementServiceImp();
+        cliniqueManagementServiceImp = new CliniqueManagementServiceImp();
         fileSystem = new FileSystem();
         objectMapper = new ObjectMapper();
     }
@@ -29,28 +29,62 @@ public class CliniqueManagementTest {
     @Test
     public void givenFile_AddDoctorDetails_ShouldReturnTrue() {
         try {
-            Doctor doctor = new Doctor("Deepak", 1, "ortho", "9AM");
-            cliniqueManager.addDoctor(doctor, doctorFilePath);
-            ArrayList<Doctor> data = objectMapper.readValue(new File(doctorFilePath), new TypeReference<ArrayList<Doctor>>() {
-            });
-            Assert.assertEquals(doctor.getName(), data.get(data.size() - 1).getName());
+            Doctor doctorDetails1 = new Doctor("Deepak singh", 1, "Dentist", "9am");
+            Doctor doctorDetails2 = new Doctor("Ak singh", 2, "Skin", "9am");
+            Doctor doctorDetails3 = new Doctor("DK singh", 3, "Neurology", "9am");
+            Doctor doctorDetails4 = new Doctor("Sandeep singh", 4, "Orthopaedics", "9am");
+            Doctor doctorDetails5 = new Doctor("MK sinha", 5, "Dermatology", "9am");
+
+            cliniqueManagementServiceImp.addDoctor(doctorDetails1, doctorFilePath);
+            cliniqueManagementServiceImp.addDoctor(doctorDetails2, doctorFilePath);
+            cliniqueManagementServiceImp.addDoctor(doctorDetails3, doctorFilePath);
+            cliniqueManagementServiceImp.addDoctor(doctorDetails4, doctorFilePath);
+            cliniqueManagementServiceImp.addDoctor(doctorDetails5, doctorFilePath);
+            ArrayList<Doctor> data = objectMapper
+                    .readValue(new File(doctorFilePath), new TypeReference<ArrayList<Doctor>>() {
+                    });
+            Assert.assertEquals(doctorDetails1.getName(), data.get(0).getName());
+            Assert.assertEquals(doctorDetails2.getName(), data.get(1).getName());
+            Assert.assertEquals(doctorDetails3.getName(), data.get(2).getName());
+            Assert.assertEquals(doctorDetails4.getName(), data.get(3).getName());
+            Assert.assertEquals(doctorDetails5.getName(), data.get(4).getName());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    public void givenFile_AddPatientDetails_ShouldReturnTrue() {
+    public void givenFile_whenAddPatientDelail_shouldReturnTrue() {
         try {
-            Patient patient = new Patient("Rahul", 1, 9918457869L, 46);
-            cliniqueManager.addPatient(patient, patientFilePath);
-            ArrayList<Patient> data = objectMapper.readValue(new File(patientFilePath), new TypeReference<ArrayList<Patient>>() {
-            });
-            Assert.assertEquals(patient.getName(), data.get(data.size() - 1).getName());
+            Patient patientDetails1 = new Patient("Raj kush", 1, 9897636572L, 27);
+            Patient patientDetails2 = new Patient("Amir khan", 2, 9978987631L, 22);
+            Patient patientDetails3 = new Patient("Rahul gupta", 3, 7897635382L, 23);
+            Patient patientDetails4 = new Patient("Danish khan", 4, 8947038738L, 25);
+            Patient patientDetails5 = new Patient("virat", 5, 7004342412L, 23);
+            cliniqueManagementServiceImp.addPatient(patientDetails1, patientFilePath);
+            cliniqueManagementServiceImp.addPatient(patientDetails2, patientFilePath);
+            cliniqueManagementServiceImp.addPatient(patientDetails3, patientFilePath);
+            cliniqueManagementServiceImp.addPatient(patientDetails4, patientFilePath);
+            cliniqueManagementServiceImp.addPatient(patientDetails5, patientFilePath);
+
+            ArrayList<Patient> data = objectMapper
+                    .readValue(new File(patientFilePath), new TypeReference<ArrayList<Doctor>>() {
+                    });
+            Assert.assertEquals(patientDetails1.getName(), data.get(0).getName());
+            Assert.assertEquals(patientDetails2.getName(), data.get(1).getName());
+            Assert.assertEquals(patientDetails3.getName(), data.get(2).getName());
+            Assert.assertEquals(patientDetails4.getName(), data.get(3).getName());
+            Assert.assertEquals(patientDetails5.getName(), data.get(4).getName());
         } catch (IOException e) {
             e.printStackTrace();
-
         }
     }
-}
 
+
+    @Test
+    public void givenFile_WhenSearchDoctorByName_ShouldReturnTrue() {
+        String doctorName = "Deepak singh";
+        Boolean isDoctorName = cliniqueManagementServiceImp.searchDoctorByName(doctorName,doctorFilePath);
+        Assert.assertTrue(isDoctorName);
+    }
+}
