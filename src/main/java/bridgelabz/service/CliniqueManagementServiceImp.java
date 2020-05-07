@@ -95,4 +95,19 @@ public class CliniqueManagementServiceImp implements CliniqueInterface {
         }
         return false;
     }
+
+    @Override
+    public boolean searchPatientByName(String patientName, String patientFilePath) {
+        try {
+            ArrayList<Patient> readData = fileSystem.readPatientFile(patientFilePath);
+            for (Patient patientData : readData) {
+                if (patientData.getName().equals(patientName)) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
