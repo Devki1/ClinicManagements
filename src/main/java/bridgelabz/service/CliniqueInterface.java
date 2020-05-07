@@ -9,6 +9,9 @@ public interface CliniqueInterface {
     public void addPatient(Patient patient, String filePath);
 
     boolean searchDoctorByName(String doctorName, String filePath);
-    public boolean searchDoctorById(int doctorId, String doctorfilePath) ;
+
+    public boolean searchDoctorById(int doctorId, String doctorfilePath);
+
+    boolean findDoctorSpecialization(String doctorSpecialist, String doctorFilePath);
 }
 
