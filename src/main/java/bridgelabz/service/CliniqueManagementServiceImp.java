@@ -33,4 +33,20 @@ public class CliniqueManagementServiceImp implements CliniqueInterface {
             e.printStackTrace();
         }
     }
+
+
+    @Override
+    public boolean searchDoctorByName(String doctorName, String filePath) {
+        try {
+            ArrayList<Doctor> readData = fileSystem.readFileDoctor(filePath);
+            for (Doctor doctorData : readData) {
+                if (doctorData.getName().equals(doctorName)) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
