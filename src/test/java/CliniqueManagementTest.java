@@ -29,11 +29,11 @@ public class CliniqueManagementTest {
     @Test
     public void givenFile_AddDoctorDetails_ShouldReturnTrue() {
         try {
-            Doctor doctorDetails1 = new Doctor("Deepak singh", 1, "Dentist", "9am");
-            Doctor doctorDetails2 = new Doctor("Ak singh", 2, "Skin", "9am");
-            Doctor doctorDetails3 = new Doctor("DK singh", 3, "Neurology", "9am");
-            Doctor doctorDetails4 = new Doctor("Sandeep singh", 4, "Orthopaedics", "9am");
-            Doctor doctorDetails5 = new Doctor("MK sinha", 5, "Dermatology", "9am");
+            Doctor doctorDetails1 = new Doctor("Deepak singh", 1011, "Dentist", "9am");
+            Doctor doctorDetails2 = new Doctor("Ak singh", 2021, "Skin", "9am");
+            Doctor doctorDetails3 = new Doctor("DK singh", 3321, "Neurology", "9am");
+            Doctor doctorDetails4 = new Doctor("Sandeep singh", 4008, "Orthopaedics", "9am");
+            Doctor doctorDetails5 = new Doctor("MK sinha", 5004, "Dermatology", "9am");
 
             cliniqueManagementServiceImp.addDoctor(doctorDetails1, doctorFilePath);
             cliniqueManagementServiceImp.addDoctor(doctorDetails2, doctorFilePath);
@@ -56,11 +56,11 @@ public class CliniqueManagementTest {
     @Test
     public void givenFile_whenAddPatientDelail_shouldReturnTrue() {
         try {
-            Patient patientDetails1 = new Patient("Raj kush", 1, 9897636572L, 27);
-            Patient patientDetails2 = new Patient("Amir khan", 2, 9978987631L, 22);
-            Patient patientDetails3 = new Patient("Rahul gupta", 3, 7897635382L, 23);
-            Patient patientDetails4 = new Patient("Danish khan", 4, 8947038738L, 25);
-            Patient patientDetails5 = new Patient("virat", 5, 7004342412L, 23);
+            Patient patientDetails1 = new Patient("Raj kush", 1101, 9897636572L, 27);
+            Patient patientDetails2 = new Patient("Amir khan", 2002, 9978987631L, 22);
+            Patient patientDetails3 = new Patient("Rahul gupta", 3354, 7897635382L, 23);
+            Patient patientDetails4 = new Patient("Danish khan", 4897, 8947038738L, 25);
+            Patient patientDetails5 = new Patient("virat", 5148, 7004342412L, 23);
             cliniqueManagementServiceImp.addPatient(patientDetails1, patientFilePath);
             cliniqueManagementServiceImp.addPatient(patientDetails2, patientFilePath);
             cliniqueManagementServiceImp.addPatient(patientDetails3, patientFilePath);
@@ -68,7 +68,7 @@ public class CliniqueManagementTest {
             cliniqueManagementServiceImp.addPatient(patientDetails5, patientFilePath);
 
             ArrayList<Patient> data = objectMapper
-                    .readValue(new File(patientFilePath), new TypeReference<ArrayList<Doctor>>() {
+                    .readValue(new File(patientFilePath), new TypeReference<ArrayList<Patient>>() {
                     });
             Assert.assertEquals(patientDetails1.getName(), data.get(0).getName());
             Assert.assertEquals(patientDetails2.getName(), data.get(1).getName());
@@ -79,12 +79,17 @@ public class CliniqueManagementTest {
             e.printStackTrace();
         }
     }
-
-
     @Test
     public void givenFile_WhenSearchDoctorByName_ShouldReturnTrue() {
         String doctorName = "Deepak singh";
         Boolean isDoctorName = cliniqueManagementServiceImp.searchDoctorByName(doctorName,doctorFilePath);
         Assert.assertTrue(isDoctorName);
     }
+    @Test
+    public void givenFile_WhenSearchDoctorByid_ShouldReturnTrue() {
+        int doctorId = 2021;
+        boolean isDoctorId = cliniqueManagementServiceImp.searchDoctorById(doctorId, doctorFilePath);
+        Assert.assertTrue(isDoctorId);
+    }
 }
+
