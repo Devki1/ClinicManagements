@@ -79,17 +79,26 @@ public class CliniqueManagementTest {
             e.printStackTrace();
         }
     }
+
     @Test
     public void givenFile_WhenSearchDoctorByName_ShouldReturnTrue() {
         String doctorName = "Deepak singh";
-        Boolean isDoctorName = cliniqueManagementServiceImp.searchDoctorByName(doctorName,doctorFilePath);
+        Boolean isDoctorName = cliniqueManagementServiceImp.searchDoctorByName(doctorName, doctorFilePath);
         Assert.assertTrue(isDoctorName);
     }
+
     @Test
     public void givenFile_WhenSearchDoctorByid_ShouldReturnTrue() {
         int doctorId = 2021;
         boolean isDoctorId = cliniqueManagementServiceImp.searchDoctorById(doctorId, doctorFilePath);
         Assert.assertTrue(isDoctorId);
+    }
+
+    @Test
+    public void givenFile_WhenFindDoctorBySpecialization_ShouldReturnTrue() {
+        String doctorSpecialist = "Neurology";
+        boolean isDoctorSpecialist = cliniqueManagementServiceImp.findDoctorSpecialization(doctorSpecialist, doctorFilePath);
+        Assert.assertTrue(isDoctorSpecialist);
     }
 }
 
