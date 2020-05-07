@@ -115,4 +115,11 @@ public class CliniqueManagementTest {
         boolean isPatientName = cliniqueManagementServiceImp.searchPatientByName(patientName, patientFilePath);
         Assert.assertTrue(isPatientName);
     }
+
+    @Test
+    public void givenFile_whenSearchPatientById_shouldReturnTrue() {
+        int patientId = 1101;
+        boolean isPatientName = cliniqueManagementServiceImp.searchPatientById(patientId, patientFilePath);
+        Assert.assertTrue(isPatientName);
+    }
 }
