@@ -18,5 +18,7 @@ public interface CliniqueInterface {
 
     public boolean searchPatientByName(String patientName, String patientFilePath);
 
-    public boolean searchPatientById(int patientId, String doctorfilePath);
+    public boolean searchPatientById(int patientId, String patientfilePath);
+
+    public boolean searchPatientByMobileNumber(Long patientMobileNumber, String patientFilePath);
 }
