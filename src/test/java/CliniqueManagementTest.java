@@ -1,5 +1,7 @@
+import bridgelabz.model.Appointment;
 import bridgelabz.model.Doctor;
 import bridgelabz.model.Patient;
+import bridgelabz.service.CliniqueInterface;
 import bridgelabz.service.CliniqueManagementServiceImp;
 import bridgelabz.service.FileSystem;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -13,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class CliniqueManagementTest {
+    public static final String appointmentFilePath = "/home/user/IdeaProjects/ClinicManagement/src/main/resources/Appointment.json";
     public static final String doctorFilePath = "/home/user/IdeaProjects/ClinicManagement/src/main/resources/Doctor.json";
     public static final String patientFilePath = "/home/user/IdeaProjects/ClinicManagement/src/main/resources/Patient.json";
     CliniqueManagementServiceImp cliniqueManagementServiceImp;
@@ -102,6 +105,21 @@ public class CliniqueManagementTest {
     }
 
     @Test
+    public void givenWhenUserChooses_ToSeePopularDoctor_ShouldReturnPopularDoctor() throws IOException {
+        Doctor doctorDetails1 = new Doctor("Deepak singh", 1011, "Dentist", "9am");
+        Doctor doctorDetails2 = new Doctor("Ak singh", 2021, "Skin", "10am");
+        Doctor doctorDetails3 = new Doctor("DK singh", 3321, "Neurology", "11am");
+        Doctor doctorDetails4 = new Doctor("Sandeep singh", 4008, "Orthopaedics", "4pm");
+        Doctor doctorDetails5 = new Doctor("MK sinha", 5004, "Dermatology", "8pm");
+
+        CliniqueInterface doctorInterface = new CliniqueManagementServiceImp();
+        doctorInterface.popularDoctor(doctorDetails1, doctorFilePath);
+        ArrayList<Doctor> data = objectMapper.readValue(new File(doctorFilePath), new TypeReference<ArrayList<Doctor>>() {
+        });
+        Assert.assertEquals(doctorDetails1.getName(), data.get(0).getName());
+    }
+
+    @Test
     public void givenFile_whenSearchDoctorByAvailability_shouldReturnTrue() {
         String doctorAvailability = "9am";
         boolean isDoctorAvailability = cliniqueManagementServiceImp
@@ -129,4 +147,49 @@ public class CliniqueManagementTest {
         boolean isPatientName = cliniqueManagementServiceImp.searchPatientByMobileNumber(patientMobileNumber, patientFilePath);
         Assert.assertTrue(isPatientName);
     }
+
+    @Test
+    public void givenFile_AddAppontmentDetails_ShouldReturnTrue() {
+        try {
+            Appointment appointmentDetails1 = new Appointment("Deepak singh", "Rahul Raj", "22/10/2018");
+            Appointment appointmentDetails2 = new Appointment("Ak singh", "Gyan", "10/10/2018");
+            Appointment appointmentDetails3 = new Appointment("Sandeep singh", "Chandra", "12/1/2020");
+            Appointment appointmentDetail4 = new Appointment("DK singh", "Danish Khan", "2/2/2020");
+            Appointment appointmentDetails5 = new Appointment("MK sinha", "Bhanu", "10/2/2020");
+
+            cliniqueManagementServiceImp.addAppointment(appointmentDetails1, appointmentFilePath);
+            cliniqueManagementServiceImp.addAppointment(appointmentDetails2, appointmentFilePath);
+            cliniqueManagementServiceImp.addAppointment(appointmentDetails3, appointmentFilePath);
+            cliniqueManagementServiceImp.addAppointment(appointmentDetail4, appointmentFilePath);
+            cliniqueManagementServiceImp.addAppointment(appointmentDetails5, appointmentFilePath);
+            ArrayList<Appointment> data = objectMapper
+                    .readValue(new File(appointmentFilePath), new TypeReference<ArrayList<Appointment>>() {
+                    });
+            Assert.assertEquals(appointmentDetails1.getDoctorName(), data.get(0).getDoctorName());
+            Assert.assertEquals(appointmentDetails2.getDoctorName(), data.get(1).getDoctorName());
+            Assert.assertEquals(appointmentDetails3.getDoctorName(), data.get(2).getDoctorName());
+            Assert.assertEquals(appointmentDetails5.getDoctorName(), data.get(4).getDoctorName());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenFile_FixedAppontmentDetails_ShouldReturnTrue() throws IOException {
+        Appointment appointmentDetails1 = new Appointment("Deepak singh", "Rahul Raj", "22/10/2018");
+        Appointment appointmentDetails2 = new Appointment("Ak singh", "Gyan", "10/10/2018");
+        Appointment appointmentDetails3 = new Appointment("Sandeep singh", "Chandra", "12/1/2020");
+        Appointment appointmentDetail4 = new Appointment("DK singh", "Danish Khan", "2/2/2020");
+        Appointment appointmentDetails5 = new Appointment("MK sinha", "Bhanu", "10/2/2020");
+        CliniqueInterface doctorInterface = new CliniqueManagementServiceImp();
+        doctorInterface.fixedAppointment(appointmentDetails1, appointmentFilePath);
+        ArrayList<Appointment> data = objectMapper
+                .readValue(new File(appointmentFilePath), new TypeReference<ArrayList<Appointment>>() {
+                });
+        Assert.assertEquals(appointmentDetails1.getDoctorName(), data.get(0).getDoctorName());
+        Assert.assertEquals(appointmentDetails1.getPatientName(), data.get(0).getPatientName());
+        Assert.assertEquals(appointmentDetails1.getDate(), data.get(0).getDate());
+
+    }
 }
+
