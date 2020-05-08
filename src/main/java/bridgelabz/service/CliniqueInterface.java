@@ -1,7 +1,10 @@
 package bridgelabz.service;
 
+import bridgelabz.model.Appointment;
 import bridgelabz.model.Doctor;
 import bridgelabz.model.Patient;
+
+import java.io.IOException;
 
 public interface CliniqueInterface {
     public void addDoctor(Doctor doctor, String filePath);
@@ -21,4 +24,12 @@ public interface CliniqueInterface {
     public boolean searchPatientById(int patientId, String patientfilePath);
 
     public boolean searchPatientByMobileNumber(Long patientMobileNumber, String patientFilePath);
+
+    public void fixedAppointment(Appointment appointmentDoctorName, String appointmentFilePath) throws IOException;
+
+    public void addAppointment(Appointment appointment, String filePath);
+
+    public void popularDoctor(Doctor doctor1, String doctorFilePath) throws IOException;
+
+
 }
