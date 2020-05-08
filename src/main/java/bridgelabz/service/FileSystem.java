@@ -1,5 +1,6 @@
 package bridgelabz.service;
 
+import bridgelabz.model.Appointment;
 import bridgelabz.model.Doctor;
 import bridgelabz.model.Patient;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -29,6 +30,11 @@ public class FileSystem {
 
     public ArrayList<Patient> readPatientFile(String filePath) throws IOException {
         return objectMapper.readValue(new File(filePath), new TypeReference<ArrayList<Patient>>() {
+        });
+    }
+
+    public ArrayList<Appointment> readAppointmentFile(String filePath) throws IOException {
+        return objectMapper.readValue(new File(filePath), new TypeReference<ArrayList<Appointment>>() {
         });
     }
 }
