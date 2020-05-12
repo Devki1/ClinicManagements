@@ -1,1 +1,1 @@
-[{"doctorName":"Deepak singh","patientName":"Rahul Raj","date":"22/10/2018"},{"doctorName":"Ak singh","patientName":"Gyan","date":"10/10/2018"},{"doctorName":"Sandeep singh","patientName":"Chandra","date":"12/1/2020"},{"doctorName":"DK singh","patientName":"Danish Khan","date":"2/2/2020"},{"doctorName":"MK sinha","patientName":"Bhanu","date":"10/2/2020"}]
+[{"appointment_Number":1,"doctor_Id":"E421","appointment_Date":"10/12/2020","patient_Id":"1234"},{"appointment_Number":2,"doctor_Id":"E421","appointment_Date":"10/12/2020","patient_Id":"1234"}]
