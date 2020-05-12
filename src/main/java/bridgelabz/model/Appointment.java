@@ -1,50 +1,47 @@
 package bridgelabz.model;
 
 public class Appointment {
-    private String doctorName;
-    private String patientName;
-    private String date;
+    private int appointment_Number;
+    private String doctor_Id;
+    private String appointment_Date;
+    private String patient_Id;
 
+    // Constructor to assign appointment properties
+    public Appointment(int appointment_Number, String doctor_Id, String appointment_Date, String patient_Id) {
+        this.appointment_Number = appointment_Number;
+        this.doctor_Id = doctor_Id;
+        this.appointment_Date = appointment_Date;
+        this.patient_Id = patient_Id;
+    }
+
+    // Default constructor
     public Appointment() {
-
     }
 
-    public Appointment(String docName, String patientName, String date) {
-        this.doctorName = docName;
-        this.patientName = patientName;
-        this.date = date;
+    // Getter methods
+    public int getAppointment_Number() {
+        return appointment_Number;
     }
 
-    public String getDoctorName() {
-        return doctorName;
+    public String getDoctor_Id() {
+        return doctor_Id;
     }
 
-    public void setDoctorName(String doctorName) {
-        this.doctorName = doctorName;
+    public String getAppointment_Date() {
+        return appointment_Date;
     }
 
-    public String getPatientName() {
-        return patientName;
-    }
-
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
+    public String getPatient_Id() {
+        return patient_Id;
     }
 
     @Override
     public String toString() {
         return "Appointment{" +
-                "doctorName='" + doctorName + '\'' +
-                ", patientName='" + patientName + '\'' +
-                ", date='" + date + '\'' +
+                "appointment_Number=" + appointment_Number +
+                ", doctor_Id='" + doctor_Id + '\'' +
+                ", appointment_Date='" + appointment_Date + '\'' +
+                ", patient_Id='" + patient_Id + '\'' +
                 '}';
     }
 }
